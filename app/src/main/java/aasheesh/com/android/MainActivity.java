@@ -55,10 +55,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         searchBar.setText("Hello World!");
         Log.d("LOG_TAG", getClass().getSimpleName() + ": text " + searchBar.getText());
         searchBar.setCardViewElevation(10);
-
         TabLayout tabLayout =
                 (TabLayout) findViewById(R.id.tab_layout);
+        setTablayout(tabLayout);
+    }
 
+    private void setTablayout(TabLayout tabLayout) {
         tabLayout.addTab(tabLayout.newTab().setText("HOME"));
         tabLayout.addTab(tabLayout.newTab().setText("GAMES"));
         tabLayout.addTab(tabLayout.newTab().setText("MOVIES"));
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onButtonClicked(int buttonCode) {
         switch (buttonCode) {
             case MaterialSearchBar.BUTTON_NAVIGATION:
-                drawer.openDrawer(Gravity.LEFT);
+                drawer.openDrawer(Gravity.START);
                 break;
             case MaterialSearchBar.BUTTON_SPEECH:
                 break;

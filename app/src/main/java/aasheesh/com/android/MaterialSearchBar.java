@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
+
 
 import aasheesh.com.android.adapter.DefaultSuggestionsAdapter;
 import aasheesh.com.android.adapter.SuggestionsAdapter;
@@ -110,19 +110,22 @@ public class MaterialSearchBar extends RelativeLayout implements View.OnClickLis
 
     private boolean navIconShown = true;
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public MaterialSearchBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public MaterialSearchBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public MaterialSearchBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(attrs);
+    }
+
     private void init(AttributeSet attrs) {
         inflate(getContext(), R.layout.search_bar, this);
 
@@ -217,7 +220,7 @@ public class MaterialSearchBar extends RelativeLayout implements View.OnClickLis
                 menuIconRes = iconResId;
                 menuIcon.setImageResource(menuIconRes);
             }
-            RelativeLayout.LayoutParams params = (LayoutParams) searchIcon.getLayoutParams();
+            LayoutParams params = (LayoutParams) searchIcon.getLayoutParams();
             params.rightMargin = (int) (48 * destiny);
             searchIcon.setLayoutParams(params);
             menuIcon.setVisibility(VISIBLE);
@@ -232,7 +235,6 @@ public class MaterialSearchBar extends RelativeLayout implements View.OnClickLis
         return this.popupMenu;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void postSetup() {
         setupTextColors();
         setupRoundedSearchBarEnabled();
@@ -266,7 +268,6 @@ public class MaterialSearchBar extends RelativeLayout implements View.OnClickLis
         placeHolder.setTextColor(placeholderColor);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void setupSearchEditText() {
         try {
             EditTextStyleHelper.applyChanges(this.searchEdit, this.textCursorColor, this.leftTextSelectorTint, this.rightTextSelectorTint, this.middleTextSelectorTint,
