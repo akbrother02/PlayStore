@@ -57,7 +57,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         searchBar.setCardViewElevation(10);
         TabLayout tabLayout =
                 (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout customTabLayout=(TabLayout)findViewById(R.id.tab_layout_design);
         setTablayout(tabLayout);
+        setCustomTablayout(customTabLayout);
+    }
+
+    private void setCustomTablayout(TabLayout customTablayout) {
+        customTablayout.addTab(customTablayout.newTab().setText("HOME"));
+        customTablayout.addTab(customTablayout.newTab().setText("GAMES"));
+        customTablayout.addTab(customTablayout.newTab().setText("MOVIES"));
+        customTablayout.addTab(customTablayout.newTab().setText("BOOKS"));
+        customTablayout.addTab(customTablayout.newTab().setText("MUSIC"));
+        customTablayout.addTab(customTablayout.newTab().setText("NEWSSTAND"));
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        final PagerAdapter adapter = new TabPagerAdapter
+                (getSupportFragmentManager(),
+                        customTablayout.getTabCount());
+        viewPager.setAdapter(adapter);
+
+        viewPager.addOnPageChangeListener(new
+                TabLayout.TabLayoutOnPageChangeListener(customTablayout));
+        customTablayout.setOnTabSelectedListener(new
+                                                   TabLayout.OnTabSelectedListener() {
+                                                       @Override
+                                                       public void onTabSelected(TabLayout.Tab tab) {
+                                                           viewPager.setCurrentItem(tab.getPosition());
+                                                       }
+
+                                                       @Override
+                                                       public void onTabUnselected(TabLayout.Tab tab) {
+
+                                                       }
+
+                                                       @Override
+                                                       public void onTabReselected(TabLayout.Tab tab) {
+
+                                                       }
+
+                                                   });
+
     }
 
     private void setTablayout(TabLayout tabLayout) {

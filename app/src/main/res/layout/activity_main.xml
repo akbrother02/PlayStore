@@ -27,12 +27,23 @@
             app:tabGravity="fill"
             app:tabMode="scrollable" />
 
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout_design"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@+id/tab_layout"
+            android:layout_gravity="left"
+            android:elevation="5dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabGravity="fill"
+            app:tabMode="scrollable" />
+
 
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tab_layout"
+            android:layout_below="@+id/tab_layout_design"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
